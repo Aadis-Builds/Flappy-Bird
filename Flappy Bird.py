@@ -21,12 +21,7 @@ gap_size = 150
 gap_y = 200
 
 pipe_top = pygame.Rect(pipe_x, 0, pipe_width, gap_y)
-pipe_bottom = pygame.Rect(
-    pipe_x,
-    gap_y + gap_size,
-    pipe_width,
-    600 - (gap_y + gap_size)
-)
+pipe_bottom = pygame.Rect(pipe_x, (gap_y + gap_size), pipe_width, 600 - (gap_y + gap_size))
 
 # Game state
 dead = False

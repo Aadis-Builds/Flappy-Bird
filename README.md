@@ -16,11 +16,3 @@ Requirements:
 
 Python 3
 Pygame
-
-Future Updates:
-
-Multiple pipe pairs on screen
-Improved visuals and animations
-Sound effects
-High score system
-Difficulty scaling

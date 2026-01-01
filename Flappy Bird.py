@@ -5,11 +5,12 @@ import random
 pygame.init()
 
 screen = pygame.display.set_mode((800, 600))
-pygame.display.set_caption('Flappy Bird')
+pygame.display.set_caption('Save the King')
 clock = pygame.time.Clock()
 
 # Player
-player = pygame.Rect(400, 1, 34, 24)
+player = pygame.Rect(400, 1, 30, 20)
+player_graphic = pygame.image.load('Player.png').convert_alpha()
 player_vel = 0
 gravity = 0.5
 
@@ -17,16 +18,20 @@ gravity = 0.5
 pipe_x = 800
 pipe_x_2 = 1200
 pipe_speed = 4
-pipe_width = 50
+pipe_width = 20
 gap_size = 150
 gap_y = 200
 gap_y_2 = random.randint(100, 450)
 
 pipe_top = pygame.Rect(pipe_x, 0, pipe_width, gap_y)
 pipe_bottom = pygame.Rect(pipe_x, gap_y + gap_size, pipe_width, 600 - (gap_y + gap_size))
+pipe_bottom_graphic = pygame.image.load('Bottom.png').convert_alpha()
+pipe_top_graphic = pygame.image.load('Top.png').convert_alpha()
 
 pipe_top_2 = pygame.Rect(pipe_x_2, 0, pipe_width, gap_y_2)
 pipe_bottom_2 = pygame.Rect(pipe_x_2, gap_y_2 + gap_size, pipe_width, 600 - (gap_y_2 + gap_size))
+pipe_top_graphic_2 = pygame.image.load('Top.png').convert_alpha()
+pipe_bottom_graphic_2 = pygame.image.load('Bottom.png').convert_alpha()
 
 # Game state
 dead = False
@@ -117,13 +122,12 @@ while running:
 
     # ---- DRAW ----
     screen.fill('black')
-    pygame.draw.rect(screen, (150, 150, 150), player)
-    pygame.draw.rect(screen, 'green', pipe_top)
-    pygame.draw.rect(screen, 'green', pipe_bottom)
-    pygame.draw.rect(screen, 'green', pipe_top_2)
-    pygame.draw.rect(screen, 'green', pipe_bottom_2)
-
+    screen.blit(player_graphic, (400, player.y))
     score_surface = font.render(str(score), True, 'white')
+    screen.blit(pipe_bottom_graphic, ((pipe_x - 10), (gap_y + gap_size)))
+    screen.blit(pipe_top_graphic, ((pipe_x - 10) , pipe_top.bottom - 450))
+    screen.blit(pipe_bottom_graphic_2, ((pipe_x_2 - 10), (gap_y_2 + gap_size)))
+    screen.blit(pipe_top_graphic, ((pipe_x_2 - 10) , pipe_top_2.bottom - 450))
     screen.blit(score_surface, (400, 50))
 
     pygame.display.update()

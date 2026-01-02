@@ -133,5 +133,6 @@ while running:
     pygame.display.update()
     clock.tick(60)
 
+# ---- QUIT ----
 pygame.quit()
 exit()
